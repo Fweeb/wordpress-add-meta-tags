@@ -179,11 +179,11 @@ function amt_add_twitter_cards_metadata_head( $post, $attachments, $embedded_med
         // Render a summary_large_image card if image format.
 
         // Type
-        if ( get_post_format($post->ID) === false || in_array( get_post_format($post->ID), array('aside', 'link', 'quote', 'status', 'chat') ) ) {
+        if ( get_post_format($post->ID) === false || in_array( get_post_format($post->ID), array('link', 'quote', 'status', 'chat') ) ) {
             $metadata_arr[] = '<meta name="twitter:card" content="summary" />';
             // Set the image size to use
             $image_size = apply_filters( 'amt_image_size_content', 'medium' );
-        } elseif ( get_post_format($post->ID) == 'image' ) {
+        } elseif ( in_array( get_post_format($post->ID), array('aside', 'image') ) ) {
             $metadata_arr[] = '<meta name="twitter:card" content="summary_large_image" />';
             // Set the image size to use
             // Since we need a bigger image, here we filter the image size through 'amt_image_size_attachment',
